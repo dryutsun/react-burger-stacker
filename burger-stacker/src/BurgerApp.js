@@ -5,6 +5,8 @@ import React, { useState } from "react";
 
 
 // Setting an ingredients variable to pass down
+
+// I forgot to switch to burgerhooks...
 const ingredients = [
   { name: "Kaiser Bun", color: "saddlebrown" },
   { name: "Sesame Bun", color: "sandybrown" },
