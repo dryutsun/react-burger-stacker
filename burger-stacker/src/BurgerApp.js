@@ -1,47 +1,97 @@
 import BurgerContainer from './BurgerContainer'
-import IngredientUnit from './IngredientUnit';
 import IngredientList from './IngredientsList'
-import React, {Component} from 'react'
+// import React, {Component} from 'react'
 import './App.css';
+import React, { useState } from 'react'
 
+const ingredients = [
+    {name: 'Kaiser Bun', color: 'saddlebrown'},
+    {name: 'Sesame Bun', color: 'sandybrown'},
+    {name: 'Gluten Free Bun', color: 'peru'},
+    {name: 'Lettuce Wrap', color: 'olivedrab'},
+    {name: 'Beef Patty', color: '#3F250B'},
+    {name: 'Soy Patty', color: '#3F250B'},
+    {name: 'Black Bean Patty', color: '#3F250B'},
+    {name: 'Chicken Patty', color: 'burlywood'},
+    {name: 'Lettuce', color: 'lawngreen'},
+    {name: 'Tomato', color: 'tomato'},
+    {name: 'Bacon', color: 'maroon'},
+    {name: 'Onion', color: 'lightyellow'}
+  ]
 
-export default class BurgerApp extends Component {
-    // * Setting Selected Ingredients to Empty Array
-    state = {
-        selectedIngredients: []
-    }
+export default function BurgerApp (props) {
+    
+    const [selectedIngredients, setSelectedIngredients] = useState([])
 
-    addIngredient = (e) => {
+    const addIngredient = (e) => {
         console.log("adding ingredient")
-        const currentBurgers = this.state.selectedIngredients
+        // const currentBurgers = selectedIngredients
         const addedIngredient = {name: e.target.innerText, color: e.target.style.backgroundColor}
-        console.log(addedIngredient)
-        console.log("this is the current state:", this.state.selectedIngredients)
-        this.state.selectedIngredients.push(addedIngredient)
-        this.setState({
-            selectedIngredients: currentBurgers
-        })
-    }
-
-    clearBurgerStack = (e) => {
-        this.setState({
-          selectedIngredients: []
-        })
-      }  
-
-    render() {
-        return(
-            <div class="burgerApp">
-                <BurgerContainer 
-                selectedIngredients={this.state.selectedIngredients}
-                clearBurgerStack={this.clearBurgerStack}/>
-                <IngredientList 
-                ingredients={this.props.ingredients}
-                addIngredient={this.addIngredient}/>
-            </div>
+        setSelectedIngredients(previousSelectedIngredients => 
+            [...selectedIngredients, addedIngredient]
         )
     }
+
+    const clearBurgerStack = (e) => {
+        setSelectedIngredients({
+          selectedIngredients: []
+        })
+    }
+    
+    return (
+        <div class="burgerApp">
+        <BurgerContainer 
+        selectedIngredients={selectedIngredients}
+        clearBurgerStack={clearBurgerStack}/>
+        <IngredientList 
+        ingredients={ingredients}
+        addIngredient={addIngredient}/>
+        </div>
+    )
 }
+
+
+
+
+
+
+// export default class BurgerApp extends Component {
+    // * Setting Selected Ingredients to Empty Array
+    // state = {
+    //     selectedIngredients: []
+    // }
+
+    // addIngredient = (e) => {
+    //     console.log("adding ingredient")
+    //     const currentBurgers = this.state.selectedIngredients
+    //     const addedIngredient = {name: e.target.innerText, color: e.target.style.backgroundColor}
+    //     console.log(addedIngredient)
+    //     console.log("this is the current state:", this.state.selectedIngredients)
+    //     this.state.selectedIngredients.push(addedIngredient)
+    //     this.setState({
+    //         selectedIngredients: currentBurgers
+    //     })
+    // }
+
+    // clearBurgerStack = (e) => {
+    //     this.setState({
+    //       selectedIngredients: []
+    //     })
+//     //   }  
+
+
+//         return(
+//             <div class="burgerApp">
+//                 <BurgerContainer 
+//                 selectedIngredients={this.state.selectedIngredients}
+//                 clearBurgerStack={this.clearBurgerStack}/>
+//                 <IngredientList 
+//                 ingredients={this.props.ingredients}
+//                 addIngredient={this.addIngredient}/>
+//             </div>
+//         )
+
+// }
 
 // I need to Set State
 

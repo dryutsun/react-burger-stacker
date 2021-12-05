@@ -3,16 +3,11 @@ import BurgerStacker from './BurgerStacker'
 import ClearBurgerStack from './ClearBurgerStack'
 
 
-export default class BurgerContainer extends Component {
-    render() {
+export default function BurgerContainer (props) {
         return(
             <div className="container">
-                <BurgerStacker selectedIngredients={this.props.selectedIngredients}/>
-                <ClearBurgerStack clearBurgerStack={this.props.clearBurgerStack} />
+                <BurgerStacker selectedIngredients={props.selectedIngredients}/>
+                <ClearBurgerStack clearBurgerStack={props.clearBurgerStack} />
             </div>
         )
     }
-
-
-
-}
